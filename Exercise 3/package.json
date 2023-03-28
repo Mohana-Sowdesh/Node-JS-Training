@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "ora": "^6.3.0"
+  },
+  "type": "module"
+
+}
