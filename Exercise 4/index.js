@@ -1,20 +1,26 @@
+//Importing express package
 let express = require('express');
 let app = express();
 
-let fs = require('fs');
+//Importing file system
+const fileAccess = require('./modules/fileAccess');
+const filePath = "./cdw_ace23_buddies.json";
 
 const port = 4000;
 
+//Code to read body parser data
 app.use(express.urlencoded({extended: false})); 
 app.use(express.json());
 
 //Creation of Buddies.json file
 app.use("/create", (req,res) => {
-    fs.writeFile("./cdw_ace23_buddies.json","[]", (err) => {
-        if(err)
-            console.log("Error occurred!!");
-    })
-    res.send("File created!!");
+    try {
+        fileAccess.writeToFile(filePath,[]);
+        res.send("File created!!");
+    }
+    catch(e) {
+        console.log(e);
+    } 
 });
 
 //Routes a request to add new buddy information to the existing list
