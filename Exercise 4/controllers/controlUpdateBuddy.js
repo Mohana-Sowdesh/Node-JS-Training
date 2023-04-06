@@ -1,22 +1,23 @@
 const fileAccess = require('../modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
+const messages = require('../modules/constant');
 let empId;
 let buddies;
 let targetBuddy;
-let flag = false;
 
 const updateBuddy = (req,res) => {
+    var flag = false;
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
         buddies = JSON.parse(fileAccessResponse);
     }
     catch(e){
-        console.log(e);
+        return res.status(400).send(messages.fileReadError + " " + e);
     }
 
-     //Fetching employee ID of the buddy to be updated received from query string
+    //Fetching employee ID of the buddy to be updated received from query string
     empId = req.params.empFinder;
 
     //Updating details
@@ -28,20 +29,20 @@ const updateBuddy = (req,res) => {
     }
 
     if(flag==true) {
-        (req.query.nickname) ? buddies[i].nickName = JSON.parse(req.query.nickname) : "";
-        (req.query.hobbies) ? buddies[i].hobbies = JSON.parse(req.query.hobbies) : "";
+        (req.query.nickname) ? targetBuddy.nickName = JSON.parse(req.query.nickname) : "";
+        (req.query.hobbies) ? targetBuddy.hobbies = JSON.parse(req.query.hobbies) : "";
     }
     else {
-        res.status(500).send("Buddy that needs to be updated is not found");
+        return res.status(500).send(messages.updateBuddyError);
     }
 
     try {
         //Writing the updated data to file
         fileAccess.writeToFile(filePath,buddies);
-        res.send("Buddy details updated");
+        return res.send(messages.updateBuddySuccess);
     }
     catch(e) {
-        console.log("Error occurred");
+        return res.status(400).send(messages.fileWriteError + "\n" + e);
     }
 };
 

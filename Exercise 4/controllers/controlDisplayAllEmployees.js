@@ -1,5 +1,6 @@
 const fileAccess = require('../modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
+const messages = require('../modules/constant');
 var fileAccessResponse = "";
 let buddies;
 
@@ -11,16 +12,15 @@ let displayAllEmployees = ((req, res) => {
         buddies = JSON.parse(fileAccessResponse);
     }
     catch(e){
-        console.log(e);
+        return res.status(400).send(messages.fileReadError + "\n" + e);
     }
 
-    if(fileAccessResponse.length > 0) {
-        console.log(buddies);
+    if(fileAccessResponse.length > 2) {
         //Sending buddies data to browser
-        res.send(JSON.stringify(buddies));
+        return res.send(JSON.stringify(buddies));
     }
     else {
-        res.status(500).send("No buddies in file");
+        return res.status(500).send(messages.noBuddyError);
     }
 });
 

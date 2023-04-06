@@ -1,17 +1,18 @@
 const fileAccess = require('../modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
+const messages = require('../modules/constant');
 var fileAccessResponse = "";
 let buddies;
-var flag = false;
 
 let deleteBuddy = (req,res) => {
+    var flag = false;
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
         buddies = JSON.parse(fileAccessResponse);
     }
     catch(e){
-        console.log(e);
+        return res.status(400).send(messages.fileReadError + " " + e);
     }
 
     //Storing employee finder in a variable empId
@@ -20,7 +21,6 @@ let deleteBuddy = (req,res) => {
     //Splicing the data of the buddy requested by array splicing
     for(let i=0; i<buddies.length; i++) {
         if(buddies[i].employeeId==empId || buddies[i].realName==empId) {
-            console.log(empId);
             buddies.splice(i,1);
             flag = true;
         }
@@ -30,14 +30,14 @@ let deleteBuddy = (req,res) => {
         try {
             //Writing data to the file after deletion 
             fileAccess.writeToFile(filePath,buddies);
-            res.send("Buddy deleted"); 
+            return res.send(messages.buddyDeletionSuccess); 
         }
         catch(e) {
-            console.log("Error occurred");
+            return res.status(400).send(messages.fileWriteError + "\n" + e);
         }
     }
     else {
-        res.status(500).send("Buddy not found");
+        return res.status(500).send(messages.buddyDeletionError);
     }
 };
 

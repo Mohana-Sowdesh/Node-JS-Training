@@ -1,16 +1,17 @@
 const fileAccess = require('../modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
+const messages = require('../modules/constant');
 var fileAccessResponse = "";
-let flag = false;
 let targetBuddy;
 
 const displayByProperty = (req, res) => {
+    let flag = false;
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
     }
     catch(e){
-        console.log(e);
+        return res.status(400).send(messages.fileReadError + " " + e);
     }
     
     let empId;
@@ -30,11 +31,10 @@ const displayByProperty = (req, res) => {
     } 
 
     if(flag==true) {
-        console.log(targetBuddy);
-        res.json(targetBuddy);
+        return res.json(targetBuddy);
     }
     else {
-        res.status(500).send("Requested buddy not found");
+        return res.status(500).send(messages.displayByPropertyError);
     }
 };
 

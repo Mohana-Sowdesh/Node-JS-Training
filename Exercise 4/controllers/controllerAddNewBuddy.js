@@ -1,5 +1,6 @@
 const fileAccess = require('../modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
+const messages = require('../modules/constant');
 var fileAccessResponse = "";
 let buddies = "";
 
@@ -10,19 +11,18 @@ let addNewBuddy = (req, res) => {
         buddies = JSON.parse(fileAccessResponse);
     }
     catch(e){
-        console.log(e);
+        return res.status(400).send(messages.fileReadError + " " + e);
     }
 
     buddies.push(req.body);
-    console.log(req.body);
     
     try {
         //Writing data after adding new buddy
         fileAccess.writeToFile(filePath,buddies);
-        res.send("New buddy added");
+        return res.send(messages.addNewBuddySuccess);
     }
     catch(e) {
-        console.log("Error occurred");
+        return res.status(400).send(messages.fileWriteError + "\n" + e);
     }
 };
 

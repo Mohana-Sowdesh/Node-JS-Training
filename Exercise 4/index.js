@@ -5,6 +5,7 @@ let app = express();
 //Importing file system
 const fileAccess = require('./modules/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
+const messages = require('./modules/constant');
 
 const port = 4000;
 
@@ -16,10 +17,10 @@ app.use(express.json());
 app.use("/create", (req,res) => {
     try {
         fileAccess.writeToFile(filePath,[]);
-        res.send("File created!!");
+        res.send(messages.fileCreationSuccess);
     }
     catch(e) {
-        console.log(e);
+        return res.status(500).send(messages.fileCreationError);
     } 
 });
 
