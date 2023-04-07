@@ -1,9 +1,11 @@
-const fileAccess = require('../../services/fileAccess');
+const fileAccess = require('../../helpers/fileAccess');
 const filePath = "../../data/tasks.json";
 const errLogger = require('../../utils/logger');
+const service = require('../../services/userServices/register.service');
 
-const registerUser = (req,res) => {
-    res.send("Message from registerUser controller");
+const registerController = (req,res) => {
+    service.register();
+    res.send("Message from register user");
 };
 
-module.exports = {registerUser};
+module.exports = {registerController};

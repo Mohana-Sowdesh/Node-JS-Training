@@ -1,9 +1,14 @@
-const fileAccess = require('../../services/fileAccess');
+const fileAccess = require('../../helpers/fileAccess');
 const filePath = "../../data/tasks.json";
 const errLogger = require('../../utils/logger');
+const service = require('../../services/taskServices/updateTask.service');
 
-const updateTask = (req,res) => {
-    res.send("Message from updateTask controller");
+const updateTaskController = (req,res) => {
+
+    //Check if the task ID is present
+    
+    service.updateTask();
+    res.send("Message from update task");
 };
 
-module.exports = {updateTask};
+module.exports = {updateTaskController};

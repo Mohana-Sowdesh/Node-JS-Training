@@ -1,9 +1,11 @@
-const fileAccess = require('../../services/fileAccess');
+const fileAccess = require('../../helpers/fileAccess');
 const filePath = "../../data/tasks.json";
 const errLogger = require('../../utils/logger');
+const service = require('../../services/userServices/login.service');
 
-const loginUser = (req,res) => {
-    res.send("Message from loginUser controller");
+const loginController = (req,res) => {
+    service.login();
+    res.send("Message from login user");
 };
 
-module.exports = {loginUser};
+module.exports = {loginController};
