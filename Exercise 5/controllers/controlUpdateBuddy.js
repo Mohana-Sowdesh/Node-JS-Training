@@ -1,13 +1,15 @@
-const fileAccess = require('../services/fileAccess');
+const fileAccess = require('../helpers/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
 let empId;
 let buddies;
-let targetBuddy;
-let flag = false;
-const errLogger = require('../utils/logger');
+const errLogger = require('../utils/logger').errLogger;
+const infoLogger = require('../utils/logger').infoLogger;
+const messages = require('../modules/constant');
+const service = require('../services/serviceUpdateBuddy');
 
-const updateBuddy = (req,res) => {
+const updateBuddyController = (req,res) => {
+    
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
@@ -15,44 +17,37 @@ const updateBuddy = (req,res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(400).send("ERROR : Error in file reading");
+        return res.status(400).send(messages.fileReadError);
     }
 
      //Fetching employee ID of the buddy to be updated received from query string
     empId = req.params.empFinder;
 
-    //Updating details
-    for(let i=0; i<buddies.length; i++) {
-        if(buddies[i].employeeId==empId || buddies[i].realName==empId) {
-            flag = true;
-            targetBuddy = buddies[i];
-        }
-    }
+    infoLogger.info(`BEGIN: updateBuddy service started`);
+    //Calling updateBuddy service
+    response = service.updateBuddy(req, buddies, empId);
+    infoLogger.info(`END: updateBuddy service ended`);
 
     try {
-        if(flag==true) {
-            (req.query.nickname) ? targetBuddy.nickName = JSON.parse(req.query.nickname) : "";
-            (req.query.hobbies) ? targetBuddy.hobbies = JSON.parse(req.query.hobbies) : "";
-        }
-        else {
+        if(response[0]==false) {
             throw new Error("Buddy that needs to be updated is not found");
         }
 
         try {
             //Writing the updated data to file
-            fileAccess.writeToFile(filePath,buddies);
-            return res.send("SUCCESS : Buddy details updated");
+            fileAccess.writeToFile(filePath,response[1]);
+            return res.send(messages.updateBuddySuccess);
         }
         catch(err) {
             errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-            return res.status(400).send("ERROR : Not able to write to file");
+            return res.status(400).send(messages.fileWriteError);
         }
     }
     catch(err){
         errLogger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(500).send("ERROR : Buddy that needs to be updated is not found");
+        return res.status(500).send(messages.updateBuddyError);
     }
 
 };
 
-module.exports = {updateBuddy};
+module.exports = {updateBuddyController};

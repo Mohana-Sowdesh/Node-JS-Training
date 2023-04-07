@@ -1,11 +1,15 @@
-const fileAccess = require('../services/fileAccess');
+const fileAccess = require('../helpers/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
 let buddies = "";
 let newBuddy = "";
-const errLogger = require('../utils/logger');
+const errLogger = require('../utils/logger').errLogger;
+const infoLogger = require('../utils/logger').infoLogger;
+const messages = require('../modules/constant');
+const service = require('../services/serviceAddNewBuddy');
 
-let addNewBuddy = (req, res) => {
+let addNewBuddyController = (req, res) => {
+    
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
@@ -13,7 +17,7 @@ let addNewBuddy = (req, res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(404).send("ERROR : Error in file reading");
+        return res.status(400).send(messages.fileReadError);
     }
 
     newBuddy = req.body;
@@ -51,25 +55,28 @@ let addNewBuddy = (req, res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(500).send("ERROR : Cannot add buddy");
+        return res.status(400).send(messages.addNewBuddyError);
     }
 
     if(flag==true) {
-        buddies.push(newBuddy);
+        infoLogger.info(`BEGIN: addNewBuddy service started`);
+        //Calling addNewBuddy service
+        buddies = service.addNewBuddy(buddies, newBuddy);
+        infoLogger.info(`END: addNewBuddy service ended`);
     
         try {
             //Writing data after adding new buddy
             fileAccess.writeToFile(filePath,buddies);
-            return res.send("SUCCESS : New buddy added");
+            return res.send(messages.addNewBuddySuccess);
         }
         catch(err) {
             errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-            return res.status(404).send("ERROR : Not able to write to file");
+            return res.status(400).send(messages.fileWriteError);
         }
     }
     else {
-        return res.status(500).send("ERROR : Cannot add buddy");
+        return res.status(400).send(messages.addNewBuddyError);
     }
 };
 
-module.exports = {addNewBuddy};
+module.exports = {addNewBuddyController};

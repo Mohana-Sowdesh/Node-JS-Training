@@ -1,18 +1,20 @@
-const fileAccess = require('../services/fileAccess');
+const fileAccess = require('../helpers/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
-let flag = false;
-let targetBuddy;
-const errLogger = require('../utils/logger');
+const errLogger = require('../utils/logger').errLogger;
+const infoLogger = require('../utils/logger').infoLogger;
+const messages = require('../modules/constant');
+const service = require('../services/serviceDisplayByProperty');
 
-const displayByProperty = (req, res) => {
+const displayByPropertyController = (req, res) => {
+    
     try {
         //Reading cdw_ace23_buddies.json file
         fileAccessResponse = fileAccess.readFromFile(filePath);
     }
     catch(err){
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(400).send("ERROR : Error in file reading");
+        return res.status(400).send(messages.fileReadError);
     }
     
     let empId;
@@ -21,19 +23,15 @@ const displayByProperty = (req, res) => {
     //Fetching employee ID received from query string 
     empId = req.params.id;
     buddies = JSON.parse(fileAccessResponse);
-    let i=0;
-
-    //Traversing the array to find the required buddy
-    for(i=0; i<buddies.length; i++) {
-        if(buddies[i].employeeId==empId){
-            targetBuddy = buddies[i];
-            flag = true;
-        }
-    } 
+    
+    infoLogger.info(`BEGIN: displayByProperty service started`);
+    //Calling displayByProperty service
+    response = service.displayByProperty(buddies, empId);
+    infoLogger.info(`END: displayByProperty service ended`);
 
     try{
-        if(flag==true) {
-            res.json(targetBuddy);
+        if(response[0]==true) {
+            res.json(response[1]);
         }
         else {
             throw new Error("Requested buddy not found");
@@ -41,9 +39,9 @@ const displayByProperty = (req, res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(500).send("ERROR : Requested buddy not found");
+        return res.status(500).send(messages.displayByPropertyError);
     }
     
 };
 
-module.exports = {displayByProperty};
+module.exports = {displayByPropertyController};
