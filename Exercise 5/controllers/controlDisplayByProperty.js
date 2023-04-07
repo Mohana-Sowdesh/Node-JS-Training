@@ -1,4 +1,4 @@
-const fileAccess = require('../modules/fileAccess');
+const fileAccess = require('../services/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
 let flag = false;
@@ -33,7 +33,6 @@ const displayByProperty = (req, res) => {
 
     try{
         if(flag==true) {
-            console.log(targetBuddy);
             res.json(targetBuddy);
         }
         else {
@@ -42,7 +41,7 @@ const displayByProperty = (req, res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return es.status(500).send("ERROR : Requested buddy not found");
+        return res.status(500).send("ERROR : Requested buddy not found");
     }
     
 };

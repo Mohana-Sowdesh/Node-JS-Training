@@ -118,3 +118,21 @@ error: Apr-05-2023 18:53:22: 	400 - undefined - Nickname should contain only alp
 error: Apr-05-2023 18:53:34: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
 error: Apr-05-2023 18:53:43: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
 error: Apr-05-2023 18:53:55: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:25:25: 	400 - undefined - Buddy already exists - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:25:49: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/20111 - DELETE - ::ffff:127.0.0.1
+error: Apr-06-2023 15:26:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:27:03: 	400 - undefined - Buddy already exists - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:28:17: 	500 - undefined - Requested buddy not found - /displayByProperty/2011 - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:29:03: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:28: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:29: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:29: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:30: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:30: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:35: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:36: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:52: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:11: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:13: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:14: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:14: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1

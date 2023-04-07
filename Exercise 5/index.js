@@ -3,10 +3,8 @@ let express = require('express');
 let app = express();
 
 //Importing file system, dotenv packages
-let fs = require('fs');
 require("dotenv").config();
 let cors = require('cors');
-
 const errLogger = require('./utils/logger').errLogger;
 
 //Code to read body parser data
@@ -27,7 +25,7 @@ app.use("/create", (req,res) => {
     }
     catch(err) {
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        console.log(err);
+        return res.status(500).send("ERROR : Cannot create file");
     } 
 });
 

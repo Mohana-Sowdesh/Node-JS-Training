@@ -1,4 +1,4 @@
-const fileAccess = require('../modules/fileAccess');
+const fileAccess = require('../services/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
 let empId;
@@ -41,7 +41,7 @@ const updateBuddy = (req,res) => {
         try {
             //Writing the updated data to file
             fileAccess.writeToFile(filePath,buddies);
-            res.send("Buddy details updated");
+            return res.send("SUCCESS : Buddy details updated");
         }
         catch(err) {
             errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);

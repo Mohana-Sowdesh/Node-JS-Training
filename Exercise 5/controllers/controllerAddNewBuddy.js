@@ -1,4 +1,4 @@
-const fileAccess = require('../modules/fileAccess');
+const fileAccess = require('../services/fileAccess');
 const filePath = "./cdw_ace23_buddies.json";
 var fileAccessResponse = "";
 let buddies = "";
@@ -13,13 +13,20 @@ let addNewBuddy = (req, res) => {
     }
     catch(err){
         errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return res.status(400).send("ERROR : Error in file reading");
+        return res.status(404).send("ERROR : Error in file reading");
     }
 
     newBuddy = req.body;
 
     try {
         var flag = true;
+        //Check if buddy already exists
+        for(var i=0; i<buddies.length; i++){
+            if(buddies[i].employeeId == newBuddy.employeeId){
+                flag = false;
+                throw new Error("Buddy already exists");
+            }
+        }
         //Validation for new buddy
         if((/^\d{4}$/).test(newBuddy.employeeId) == false) {
             flag = false;
@@ -33,7 +40,7 @@ let addNewBuddy = (req, res) => {
             flag = false;
             throw new Error("Nickname should contain only alphabets");
         }
-        if((/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/).test(newBuddy.dob) == false) {
+        if((/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/).test(newBuddy.dob) == false) {
             flag = false;
             throw new Error("Please enter a valid date");
         }
@@ -49,16 +56,15 @@ let addNewBuddy = (req, res) => {
 
     if(flag==true) {
         buddies.push(newBuddy);
-        console.log(newBuddy);
     
         try {
             //Writing data after adding new buddy
             fileAccess.writeToFile(filePath,buddies);
-            res.send("New buddy added");
+            return res.send("SUCCESS : New buddy added");
         }
         catch(err) {
             errLogger.error(`${err.status || 400} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-            return res.status(400).send("ERROR : Not able to write to file");
+            return res.status(404).send("ERROR : Not able to write to file");
         }
     }
     else {
