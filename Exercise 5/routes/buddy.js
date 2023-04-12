@@ -5,7 +5,6 @@ let router = express.Router();
 let addNewBuddyController = require('../controllers/controllerAddNewBuddy');
 let deleteBuddyController = require('../controllers/controlDeleteBuddy');
 let displayAllBuddiesController = require('../controllers/controlDisplayAllBuddies');
-let displayByPropertyController = require('../controllers/controlDisplayByProperty');
 let updateBuddyController = require('../controllers/controlUpdateBuddy');
 
 //Routing to addNewBuddyController
@@ -18,7 +17,7 @@ router.delete("/:empFinder", deleteBuddyController.deleteBuddyController);
 router.get("/", displayAllBuddiesController.displayAllBuddiesController);
 
 //Routing to displayByPropertyController
-router.get("/:id", displayByPropertyController.displayByPropertyController);
+router.get("/:id", displayAllBuddiesController.displayByPropertyController);
 
 //Routing to updateBuddyController
 router.put("/:empFinder", updateBuddyController.updateBuddyController);
