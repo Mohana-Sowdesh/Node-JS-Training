@@ -1,0 +1,156 @@
+error: Apr-05-2023 09:52:57: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:54:39: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:54:40: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:54:41: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:54:42: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:55:13: 	400 - undefined - undefined - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 09:57:07: 	400 - undefined - Buddy not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 10:09:00: 	400 - undefined - Buddy not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 10:16:13: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 10:16:45: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 16:36:12: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 16:38:47: 	400 - Internal Server Error - undefined - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-05-2023 16:43:04: 	500 - undefined - undefined - /displayByProperty/2052 - GET - ::ffff:127.0.0.1
+error: Apr-05-2023 16:46:08: 	400 - undefined - undefined - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 16:47:38: 	400 - undefined - undefined - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 16:48:06: 	400 - undefined - "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$".test is not a function - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 16:50:02: 	400 - undefined - "^(0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])[-/.](19|20)\d\d$".test is not a function - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 16:53:56: 	500 - undefined - i is not defined - /updateBuddy/2075/?nickname=%22pkkk%22&hobbies=%22Cycling%22 - PUT - ::ffff:127.0.0.1
+error: Apr-05-2023 16:53:56: 	400 - Internal Server Error - Cannot set headers after they are sent to the client - /updateBuddy/2075/?nickname=%22pkkk%22&hobbies=%22Cycling%22 - PUT - ::ffff:127.0.0.1
+error: Apr-05-2023 16:59:29: 	500 - undefined - undefined - /updateBuddy/2030/?nickname=%22pkkk%22&hobbies=%22Cycling%22 - PUT - ::ffff:127.0.0.1
+error: Apr-05-2023 16:59:29: 	400 - Internal Server Error - Cannot set headers after they are sent to the client - /updateBuddy/2030/?nickname=%22pkkk%22&hobbies=%22Cycling%22 - PUT - ::ffff:127.0.0.1
+error: Apr-05-2023 17:04:44: 	500 - undefined - undefined - /updateBuddy/2030?nickname=%22kbbb%22&hobbies=%22Cycling%22 - PUT - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:50: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:51: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:51: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:52: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:52: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:53: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:53: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:53: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:54: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:54: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:07:54: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/Mugilanandan - DELETE - ::ffff:127.0.0.1
+error: Apr-05-2023 17:33:39: 	400 - undefined - Employee ID must be only digits - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:36:21: 	400 - undefined - Name should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:36:38: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:36:55: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:39:22: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:40:23: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:42:29: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:43:14: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:47:09: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:47:15: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:47:36: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:47:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:48:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:48:01: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:48:02: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:48:02: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:48:03: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:02: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:03: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:03: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:04: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:04: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:05: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:05: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:05: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:46: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:50:46: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:52: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:53: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:54: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:54: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:55: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:55: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:55: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:51:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:52:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:52:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:52:01: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:52:01: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:12: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:53: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:54: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:54: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:55: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:55: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:56: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:56: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:56: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:57: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:57: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:57: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:57: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:58: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:55:59: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 17:56:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:27:06: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:27:40: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:27:44: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:27:45: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:27:45: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:36:31: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:36:51: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:38:36: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:40:23: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:40:29: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:42:22: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:42:57: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:43:02: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:43:48: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:45:50: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:47:12: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:50:14: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:52:41: 	400 - undefined - Employee ID must be only digits - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:53:10: 	400 - undefined - Name should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:53:22: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:53:34: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:53:43: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-05-2023 18:53:55: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:25:25: 	400 - undefined - Buddy already exists - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:25:49: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/20111 - DELETE - ::ffff:127.0.0.1
+error: Apr-06-2023 15:26:00: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:27:03: 	400 - undefined - Buddy already exists - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-06-2023 15:28:17: 	500 - undefined - Requested buddy not found - /displayByProperty/2011 - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:29:03: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:28: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:29: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:29: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:30: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:30: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:35: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:36: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:31:52: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:11: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:13: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:14: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-06-2023 15:33:14: 	400 - Internal Server Error - No buddies in file - /displayAllEmployees - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 12:21:53: 	400 - undefined - ENOENT: no such file or directory, open './cdw_ace23_buddies.json' - /deleteBuddy/2011 - DELETE - ::ffff:127.0.0.1
+error: Apr-07-2023 12:25:08: 	400 - undefined - fileAccess is not defined - /create - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 12:26:55: 	400 - undefined - filePath is not defined - /create - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 14:22:24: 	400 - Internal Server Error - Buddy to be deleted is not found - /deleteBuddy/2011 - DELETE - ::ffff:127.0.0.1
+error: Apr-07-2023 14:24:43: 	400 - undefined - Buddy to be deleted is not found - /deleteBuddy/2011 - DELETE - ::ffff:127.0.0.1
+error: Apr-07-2023 14:29:42: 	500 - undefined - Requested buddy not found - /displayByProperty/2011 - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 14:34:11: 	500 - undefined - Requested buddy not found - /displayByProperty/2011 - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 14:48:24: 	500 - undefined - Buddy that needs to be updated is not found - /updateBuddy/2011/?nickname=%22hgg%22&hobbies=%22Reading%22 - PUT - ::ffff:127.0.0.1
+error: Apr-07-2023 14:59:17: 	400 - undefined - No buddies in file - /displayAllBuddies - GET - ::ffff:127.0.0.1
+error: Apr-07-2023 15:07:18: 	400 - undefined - Buddy already exists - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:07:42: 	400 - undefined - Name should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:08:20: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:08:27: 	400 - undefined - Nickname should contain only alphabets - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:08:35: 	400 - undefined - Please enter a valid date - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:08:43: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
+error: Apr-07-2023 15:25:29: 	400 - undefined - Buddy to be deleted is not found - /deleteBuddy/2011 - DELETE - ::ffff:127.0.0.1
+error: Apr-07-2023 15:33:14: 	400 - undefined - Buddy to be deleted is not found - /deleteBuddy/2011 - DELETE - ::ffff:127.0.0.1
+error: Apr-07-2023 15:33:22: 	400 - undefined - Please enter a valid hobby - /addNewBuddy - POST - ::ffff:127.0.0.1
