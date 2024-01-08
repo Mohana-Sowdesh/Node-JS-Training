@@ -16,6 +16,10 @@ const TASKS_FILE_PATH = './data/tasks';
 
 const INTERNAL_SERVER_ERROR_MSG = "Internal server error";
 
+const LOGIN = {
+    LOGIN_ERROR: "Invalid username or password"
+}
+
 const fileReadError = "ERROR : Error occurred while reading file";
 const fileWriteError = "ERROR : Error occurred while writing to file";
 const registrationCredentialsError = "ERROR : Please enter valid username and password";
@@ -34,6 +38,6 @@ const sortTask = "ERROR : Tasks cannot sorted";
 const updateTaskError = "ERROR : Task cannot be found";
 const updateTaskSuccess = "SUCCESS : Task updated successfully";
 
-module.exports = { STATUS_CODES, REGISTER, USERS_FILE_PATH, TASKS_FILE_PATH, INTERNAL_SERVER_ERROR_MSG,fileReadError, fileWriteError, registrationCredentialsError, registrationSuccess, registrationFailure, loginError, 
+module.exports = { STATUS_CODES, REGISTER, USERS_FILE_PATH, TASKS_FILE_PATH, INTERNAL_SERVER_ERROR_MSG, LOGIN, fileReadError, fileWriteError, registrationCredentialsError, registrationSuccess, registrationFailure, loginError, 
     loginSuccess, addTaskSuccess, addTaskError, deleteTaskError, deleteTaskSuccess, filterTaskError, 
     readTaskByIDError, readTasks, sortTask, updateTaskError, updateTaskSuccess};

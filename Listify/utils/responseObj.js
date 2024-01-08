@@ -20,7 +20,6 @@ const httpSuccessObj = (data) => {
  * @returns 
  */
 const httpErrorObj = (req, err, code) => {
-    errLogger.error(`${code} - ${err} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     return {
         status: "ERROR",
         code: code,

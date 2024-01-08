@@ -18,9 +18,13 @@ const verifyToken = (req, res, next) => {
     return next();
 }
 
-
+/**
+ * Method to create JWT token for user on successful login
+ * @param {*} payload 
+ * @returns 
+ */
 const createToken = (payload) => {
-    const token = jwt.sign({ username: payload },process.env.JWT_SECRET_KEY, { expiresIn: "30m"});
+    const token = jwt.sign({ "username": payload },process.env.JWT_SECRET_KEY, { expiresIn: "30m"});
     return token;
 }
 

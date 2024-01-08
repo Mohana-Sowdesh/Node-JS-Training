@@ -1,21 +1,28 @@
 const auth = require('../../middleware/auth');
+const bcrypt = require("bcrypt");
 
-
-const login = (content, username, password) => {
-    let token=undefined, i=0; 
-    for(i=0; i< content.length; i++) {
+/**
+ * Service to login a user
+ * @param {*} content - users file data
+ * @param {*} username 
+ * @param {*} password 
+ * @returns 
+ */
+const login = async (content, username, password) => {
+    let token = undefined, i = 0; 
+    for(i=0; i < content.length; i++) {
         if(content[i].username == username) {
-            if(content[i].password == password) {
+            if(await bcrypt.compare(password, content[i].password)) {
                 token = auth.createToken(username);
             }
         }
     }
 
-    if(token!=undefined) {
+    if(token != undefined) {
         return token;
     }
     else {
-        throw new Error("Invalid Login credentials");
+        return '';
     }
 }
 
