@@ -24,8 +24,12 @@ const createTaskController = (req,res) => {
     }
     ifTaskExists = taskHelper.taskExists(req, req.body.taskId);
 
-    if(ifTaskExists) {
-        response = responseObj.httpErrorObj(CONSTANTS.CREATE_TASK.CANNOT_CREATE_TASK, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+    if(ifTaskExists == 1) {
+        response = responseObj.httpErrorObj(CONSTANTS.CREATE_TASK.TASK_ALREADY_EXISTS, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        return resp.sendResponse(res, response);
+    }
+    else if(ifTaskExists == -2) {
+        response = responseObj.httpErrorObj(CONSTANTS.INTERNAL_SERVER_ERROR_MSG, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
         return resp.sendResponse(res, response);
     }
 

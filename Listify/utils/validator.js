@@ -1,4 +1,5 @@
 const CONSTANTS = require('../helpers/constants');
+const APP_CONSTANTS = require('../helpers/appConstants');
 
 /**
  * Method to validate the username given by a new user while registration
@@ -29,11 +30,11 @@ const taskValidationRegex = [
     },
     {
         key: "title",
-        regex: /^[a-zA-Z0-9 ]{1,30}$/
+        regex: /^[a-zA-Z0-9 -']{1,40}$/
     },
     {
         key: "description",
-        regex: /^[a-zA-Z0-9 ]{1,125}$/
+        regex: /^[a-zA-Z0-9 -]{1,125}$/
     },
     {
         key: "priority",
@@ -55,14 +56,15 @@ const taskCommentsValidationRegex = [
         regex: /^[A-Z0-9 :-]{13,}$/
     }
 ]
+
 /**
  * Method to validate all the keys of task
  * @param {*} task 
  * @returns 
  */
 const taskValidator = (task) => {
-    let keyMissingMsg = CONSTANTS.CREATE_TASK.KEY_MISSING;
-    let formatInvalidMsg = CONSTANTS.CREATE_TASK.NOT_IN_FORMAT_MSG;
+    let keyMissingMsg = CONSTANTS.VALIDATION_MSG.KEY_MISSING;
+    let formatInvalidMsg = CONSTANTS.VALIDATION_MSG.NOT_IN_FORMAT_MSG;
     let keyName = "${keyName}";
     let result = { flag: true, messages: []};
 
@@ -107,10 +109,81 @@ const taskValidator = (task) => {
     return result;
 }
 
+/**
+ * Method to validate taskId
+ * @param {*} taskId 
+ * @returns 
+ */
 const taskIdValidator = (taskId) => {
     if((/^[0-9]{1,15}$/).test(taskId))
         return true;
     return false;
 }
 
-module.exports = { userNameValidator, passwordValidator, taskValidator, taskIdValidator}
+/**
+ * Method to validate filterTask query param keys
+ * @param {*} queryParams 
+ * @returns 
+ */
+const filterTaskValidator = (queryParams) => {
+    let result = { flag: true, messages: []};
+    let keyMissingMsg = CONSTANTS.VALIDATION_MSG.KEY_MISSING;
+    let keyName = "${keyName}";
+    let filterTaskKeys = APP_CONSTANTS.FILTER_TASK_KEYS;
+
+    for(let i=0; i < filterTaskKeys.length; i++) {
+        if(!(queryParams.hasOwnProperty(filterTaskKeys[i]))) {
+            result.flag = false;
+            msg = keyMissingMsg.replace(keyName, filterTaskKeys[i]);
+            result["messages"].push(msg);
+        }
+    }
+
+    if(!(APP_CONSTANTS.FILTER_OPTIONS.includes(queryParams.criteria))) {
+        result.flag = false;
+        result["messages"].push(CONSTANTS.FILTER_TASK.VALIDATION_MSG);
+    }
+    return result;
+}
+/**
+ * Method to validate pagination keys
+ * @param {*} queryParams 
+ * @returns 
+ */
+const paginationKeyValidator = (queryParams) => {
+    let result = { flag: true, messages: []};
+    let keyMissingMsg = CONSTANTS.VALIDATION_MSG.KEY_MISSING;
+    let formatInvalidMsg = CONSTANTS.PAGINATION.VALIDATION_ERROR;
+    let keyName = "${keyName}";
+    let paginationKeys = APP_CONSTANTS.PAGINATION_KEYS;
+
+    for(let i=0; i < paginationKeys.length; i++) {
+        if(!(queryParams.hasOwnProperty(paginationKeys[i]))) {
+            result.flag = false;
+            msg = keyMissingMsg.replace(keyName, paginationKeys[i]);
+            result["messages"].push(msg);
+        }
+        else if((typeof parseInt(queryParams[paginationKeys[i]]) != "number") || parseInt(queryParams[paginationKeys[i]]) <= 0) {
+            result.flag = false;
+            msg = formatInvalidMsg.replace(keyName, paginationKeys[i]);
+            result["messages"].push(msg);
+        }
+    }
+    return result;
+}
+/**
+ * Method to check if sort valu key is either 'asc' or 'desc'
+ * @param {*} queryParams 
+ * @param {*} validationResult 
+ * @returns 
+ */
+const sortValueValidator = (queryParams, validationResult) => {
+    if(!(queryParams.value.toLowerCase() == 'asc' || queryParams.value.toLowerCase() == 'desc')) {
+        validationResult.flag = false;
+        validationResult["messages"].push(CONSTANTS.SORT_TASK.VALUE_VALIDATION_ERROR);
+    }
+    return validationResult;
+}
+
+module.exports = { userNameValidator, passwordValidator, taskValidator, taskIdValidator,
+    filterTaskValidator, paginationKeyValidator, sortValueValidator }

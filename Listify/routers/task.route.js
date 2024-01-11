@@ -13,10 +13,10 @@ const updateTaskController = require('../controllers/taskController/updateTask.c
 //Routing tasks
 router.post("/create", createTaskController.createTaskController);
 router.delete("/:id", deleteTaskController.deleteTaskController);
-router.get("/filterTask/:criteria", filterTaskController.filterTaskController);
-router.get("/:id", readTaskByIDController.readTaskByIDController);
+router.get("/filter", filterTaskController.filterTaskController);
 router.get("/tasks-list", readTasksController.readTasksController);
-router.get("/sortTask", sortTaskController.sortTaskController);
-router.put("/updateTask/:id", updateTaskController.updateTaskController);
+router.get("/sort", sortTaskController.sortTaskController);
+router.get("/:id", readTaskByIDController.readTaskByIDController);
+router.put("/:id", updateTaskController.updateTaskController);
 
 module.exports = router;

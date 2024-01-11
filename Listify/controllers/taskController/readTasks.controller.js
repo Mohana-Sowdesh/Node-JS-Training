@@ -19,6 +19,9 @@ const readTasksController = (req,res) => {
    if(allTasks == null) {
       response = responseObj.httpErrorObj(CONSTANTS.INTERNAL_SERVER_ERROR_MSG, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
    }
+   else if(allTasks.length == 0) {
+      response = responseObj.httpSuccessObj(CONSTANTS.READ_ALL_TASKS.NO_TASKS);
+   }
    else {
       response = responseObj.httpSuccessObj(allTasks);
    }

@@ -1,6 +1,7 @@
 const fileAccess = require('../../helpers/fileAccess');
 const { errLogger } = require('../../utils/logger');
 const filePath = "/../../data/tasks.json";
+
 /**
  * Service to read all tasks for a particular user
  * @returns - list of all tasks for a particular user

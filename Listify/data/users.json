@@ -1,10 +1,14 @@
 [
-    {
-      "username": "Sowdesh",
-      "password": "$2b$14$ICEKddZYOOnAuVi1wnkLrexFAmLxCrPUvEKx9L0IB1380WY.RH7d."
-    },
-    {
-      "username": "Aravindhan",
-      "password": "$2b$14$cWWeR7zRU3M6d1Bi3Sz93.t7m394Ieb2/6ivWPB7smCQZZh1fEOLS"
-    }
-  ]
+  {
+    "username": "Sowdesh",
+    "password": "$2b$14$ICEKddZYOOnAuVi1wnkLrexFAmLxCrPUvEKx9L0IB1380WY.RH7d."
+  },
+  {
+    "username": "Aravindhan",
+    "password": "$2b$14$cWWeR7zRU3M6d1Bi3Sz93.t7m394Ieb2/6ivWPB7smCQZZh1fEOLS"
+  },
+  {
+    "username": "Malathi",
+    "password": "$2b$14$Wi1NgQ4WuFkM2pD9bhLlUejAOZDfWna7BSiI6mgDw3WRqSoGC6Qla"
+  }
+]
