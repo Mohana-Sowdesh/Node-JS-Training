@@ -1,5 +1,6 @@
 const fileAccess = require('../../helpers/fileAccess');
 const usersFilePath = 'data/users.json';
+const APP_CONSTANTS = require('../../helpers/appConstants');
 var fileAccessResponse = "";
 var content; 
 
@@ -9,15 +10,27 @@ var content;
  * @param {*} password 
  */
 const register = (username, password) => {
-    //Reading users.json file
-    fileAccessResponse = fileAccess.readFromFile(usersFilePath);
-    content = JSON.parse(fileAccessResponse);
+    try {
+        //Reading users.json file
+        fileAccessResponse = fileAccess.readFromFile(usersFilePath);
+        content = JSON.parse(fileAccessResponse);
+    }
+    catch(err) {
+        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        return APP_CONSTANTS.ERROR;
+    }
 
     //Appending new user to 'content' array
     content.push({username, password});
 
-    //Writing to users.json file
-    fileAccess.writeToFile(usersFilePath, content);
+    try {
+        //Writing to users.json file
+        fileAccess.writeToFile(usersFilePath, content);
+    }
+    catch(err) {
+        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        return APP_CONSTANTS.ERROR;
+    }
 }
 
 module.exports = {register};

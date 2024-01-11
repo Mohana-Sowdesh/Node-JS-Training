@@ -11,12 +11,12 @@ const sortTaskController = require('../controllers/taskController/sortTask.contr
 const updateTaskController = require('../controllers/taskController/updateTask.controller');
 
 //Routing tasks
-router.post("/createTask",createTaskController.createTaskController);
-router.delete("/deleteTask/:id",deleteTaskController.deleteTaskController);
-router.get("/filterTask/:criteria",filterTaskController.filterTaskController);
-router.get("/readTaskByID/:id",readTaskByIDController.readTaskByIDController);
-router.get("/readTasks",readTasksController.readTasksController);
-router.get("/sortTask",sortTaskController.sortTaskController);
-router.put("/updateTask/:id",updateTaskController.updateTaskController);
+router.post("/create", createTaskController.createTaskController);
+router.delete("/:id", deleteTaskController.deleteTaskController);
+router.get("/filterTask/:criteria", filterTaskController.filterTaskController);
+router.get("/:id", readTaskByIDController.readTaskByIDController);
+router.get("/tasks-list", readTasksController.readTasksController);
+router.get("/sortTask", sortTaskController.sortTaskController);
+router.put("/updateTask/:id", updateTaskController.updateTaskController);
 
 module.exports = router;

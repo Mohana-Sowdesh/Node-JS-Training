@@ -1,5 +1,5 @@
 const service = require('../../services/userServices/register.service');
-const CONSTANTS = require('../../helpers/constant'); 
+const CONSTANTS = require('../../helpers/constants'); 
 const {errLogger, infoLogger} = require('../../utils/logger');
 const validator = require('../../utils/validator');
 const responseObj = require('../../utils/responseObj');
@@ -7,7 +7,7 @@ const resp = require('../../helpers/response');
 const userHelper = require('../../helpers/userHelper');
 const fileAccess = require('../../helpers/fileAccess');
 const bcrypt = require("bcrypt");
-let flag;
+let flag = false;
 let response;
 
 /**
@@ -22,11 +22,11 @@ const registerController = async (req, res) => {
     const passwordValidationRes = validator.passwordValidator(req.body.password);
     
     if(!userNameValidationRes) {
-        response = responseObj.httpErrorObj(req, CONSTANTS.REGISTER.USERNAME_INVALID, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        response = responseObj.httpErrorObj(CONSTANTS.REGISTER.USERNAME_INVALID, CONSTANTS.STATUS_CODES.BAD_REQUEST);
         return resp.sendResponse(res,response);
     }
     else if(!passwordValidationRes) {
-        response = responseObj.httpErrorObj(req, CONSTANTS.REGISTER.PASSWORD_INVALID, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        response = responseObj.httpErrorObj(CONSTANTS.REGISTER.PASSWORD_INVALID, CONSTANTS.STATUS_CODES.BAD_REQUEST);
         return resp.sendResponse(res,response);
     }
 
@@ -36,7 +36,7 @@ const registerController = async (req, res) => {
     
     if(userCheckResult != -1)
     {
-        response = responseObj.httpErrorObj(req, CONSTANTS.REGISTER.USER_ALREADY_EXISTS, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        response = responseObj.httpErrorObj(CONSTANTS.REGISTER.USER_ALREADY_EXISTS, CONSTANTS.STATUS_CODES.BAD_REQUEST);
         return resp.sendResponse(res,response);
     }
 
@@ -51,10 +51,7 @@ const registerController = async (req, res) => {
         flag = true;
     }
     catch(err) {
-        flag = false;
         errLogger.error(`${err} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        //Logs error in case of error
-        response = responseObj.httpErrorObj(req, CONSTANTS.INTERNAL_SERVER_ERROR_MSG, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
     }
 
     if(flag==true) {
@@ -64,12 +61,11 @@ const registerController = async (req, res) => {
         const tasksFileData = JSON.parse(tasksFileDataStr);
         tasksFileData[req.body.username] = [];
         await fileAccess.writeToFile((__dirname + "/../../data/tasks.json"), tasksFileData);
-        return resp.sendResponse(res,response);
     }
     else {
-        response = responseObj.httpErrorObj(req, CONSTANTS.REGISTER.REGISTRATION_FAILURE, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
-        return resp.sendResponse(res,response);
+        response = responseObj.httpErrorObj(CONSTANTS.REGISTER.REGISTRATION_FAILURE, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
     }
+    return resp.sendResponse(res,response);
 };
 
 module.exports = {registerController};

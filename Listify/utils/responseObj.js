@@ -1,5 +1,3 @@
-const {errLogger} = require('../utils/logger');
-
 /**
  * Method to create a HTTP Success response object
  * @param {*} data 
@@ -19,7 +17,7 @@ const httpSuccessObj = (data) => {
  * @param {*} err 
  * @returns 
  */
-const httpErrorObj = (req, err, code) => {
+const httpErrorObj = (err, code) => {
     return {
         status: "ERROR",
         code: code,

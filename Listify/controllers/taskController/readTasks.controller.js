@@ -1,14 +1,29 @@
-const fileAccess = require('../../helpers/fileAccess');
-const filePath = "../../data/tasks.json";
-const {errLogger, infoLogger} = require('../../utils/logger');
+const { infoLogger } = require('../../utils/logger');
 const service = require('../../services/taskServices/readTasks.service');
-
+const responseObj = require('../../utils/responseObj');
+const resp = require('../../helpers/response');
+const CONSTANTS = require('../../helpers/constants');
+let response;
+/**
+ * Controller to read all tasks of a user
+ * @param {*} req 
+ * @param {*} res 
+ * @returns 
+ */
 const readTasksController = (req,res) => {
    //Check if there are tasks and not empty
    infoLogger.info(`BEGIN: readTasks service started`);
-   service.readTasks();
+   allTasks = service.readTasks(req);
    infoLogger.info(`END: readTasks service ended`);
-   res.send("Message from read tasks");
+
+   if(allTasks == null) {
+      response = responseObj.httpErrorObj(CONSTANTS.INTERNAL_SERVER_ERROR_MSG, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
+   }
+   else {
+      response = responseObj.httpSuccessObj(allTasks);
+   }
+
+   return resp.sendResponse(res,response);
 };
 
 module.exports = {readTasksController};

@@ -1,21 +1,25 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const responseObj = require('../utils/responseObj');
+const CONSTANTS = require('../helpers/constants');
+const resp = require('../helpers/response');
+const { errLogger } = require('../utils/logger');
 
 const verifyToken = (req, res, next) => {
     let token;
     let decoded;
     try {
-        console.log(req.headers.authorization);
         token = (req.headers.authorization).split(' ')[1];
-        if(token) decoded = jwt.verify(token, process.env.JWTSECRETKEY);
-
-        console.log(decoded);
-        res.status(200).send(decoded);
+        if(token) {
+            decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+            req.username = decoded.username;
+        }
         return next();
     } catch(err) {
-        res.status(403).send("Invalid Token");
+        errLogger.error(`${err.status || 500} - ${res.statusMessage} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        response = responseObj.httpErrorObj(CONSTANTS.USER_UNAUTHORIZED,  CONSTANTS.STATUS_CODES.UNAUTHORIZED);
+        return resp.sendResponse(res, response);
     }
-    return next();
 }
 
 /**
