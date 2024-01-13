@@ -7,7 +7,7 @@ const resp = require('../../helpers/response');
 const userHelper = require('../../helpers/userHelper');
 const fileAccess = require('../../helpers/fileAccess');
 const bcrypt = require("bcrypt");
-let flag = false;
+const APP_CONSTANTS = require('../../helpers/appConstants');
 let response;
 
 /**
@@ -17,6 +17,12 @@ let response;
  * @returns 
  */
 const registerController = async (req, res) => {
+    keyExistsValidationResult = validator.userKeysValidator(req.body);
+
+    if(!keyExistsValidationResult.flag) {
+        response = responseObj.httpErrorObj(keyExistsValidationResult.messages, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        return resp.sendResponse(res,response);
+    }
 
     const userNameValidationRes = validator.userNameValidator(req.body.username);
     const passwordValidationRes = validator.passwordValidator(req.body.password);
@@ -34,6 +40,7 @@ const registerController = async (req, res) => {
     const usersFileData = fileAccess.readFromFile(__dirname + "/../../data/users.json");
     const userCheckResult = userHelper.userExists(usersFileData, req.body.username);
     
+    console.log(userCheckResult);
     if(userCheckResult != -1)
     {
         response = responseObj.httpErrorObj(CONSTANTS.REGISTER.USER_ALREADY_EXISTS, CONSTANTS.STATUS_CODES.BAD_REQUEST);
@@ -46,15 +53,14 @@ const registerController = async (req, res) => {
     try {
         //Calling register service function
         infoLogger.info(`BEGIN: User register service started`);
-        service.register(req.body.username, hashedPassword);
+        registrationResult = service.register(req.body.username, hashedPassword);
         infoLogger.info(`END: User register service ended`);
-        flag = true;
     }
     catch(err) {
         errLogger.error(`${err} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     }
 
-    if(flag==true) {
+    if(registrationResult == APP_CONSTANTS.SUCCESS_CODE) {
         response = responseObj.httpSuccessObj(CONSTANTS.REGISTER.REGISTRATION_SUCCESS);
         //Create a new key in tasks file for the created user
         const tasksFileDataStr = await fileAccess.readFromFile(__dirname + "/../../data/tasks.json");

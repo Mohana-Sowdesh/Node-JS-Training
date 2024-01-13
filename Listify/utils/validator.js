@@ -1,13 +1,30 @@
 const CONSTANTS = require('../helpers/constants');
 const APP_CONSTANTS = require('../helpers/appConstants');
 
+const userKeysValidator = (reqBody) => {
+    let keyMissingMsg = CONSTANTS.VALIDATION_MSG.KEY_MISSING;
+    let keyName = "${keyName}";
+    let result = { flag: true, messages: []};
+    let userKeys = APP_CONSTANTS.USER_KEYS;
+
+    for(let i=0; i < userKeys.length; i++) {
+        if(!(reqBody.hasOwnProperty(userKeys[i])))
+        {
+            result["flag"] = false;
+            msg = keyMissingMsg.replace(keyName, userKeys[i]);
+            result["messages"].push(msg);
+        }
+    }
+    return result;
+}
+
 /**
  * Method to validate the username given by a new user while registration
  * @param {*} username 
  * @returns 
  */
 const userNameValidator = (username) => {
-    if((/^[a-zA-Z_]{1,30}$/).test(username) == false)
+    if((/^[a-zA-Z0-9_]{1,30}$/).test(username) == false)
         return false;
     return true;
 }
@@ -185,5 +202,5 @@ const sortValueValidator = (queryParams, validationResult) => {
     return validationResult;
 }
 
-module.exports = { userNameValidator, passwordValidator, taskValidator, taskIdValidator,
+module.exports = { userKeysValidator, userNameValidator, passwordValidator, taskValidator, taskIdValidator,
     filterTaskValidator, paginationKeyValidator, sortValueValidator }

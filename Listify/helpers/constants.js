@@ -2,13 +2,14 @@ const STATUS_CODES = {
     BAD_REQUEST: 400,
     INTERNAL_SERVER_ERROR: 500,
     UNAUTHORIZED: 401,
-    NOT_FOUND: 404
+    NOT_FOUND: 404,
+    SUCCESS: 200
 }
 
 const REGISTER = {
     USERNAME_INVALID: "Username is invalid",
     PASSWORD_INVALID: "Password is not valid",
-    USER_ALREADY_EXISTS: "User already exists",
+    USER_ALREADY_EXISTS: "Username already exists",
     REGISTRATION_SUCCESS: "User registered successfully",
     REGISTRATION_FAILURE: "Sorry! User cannot be registered"
 }

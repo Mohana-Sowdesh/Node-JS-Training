@@ -5,6 +5,7 @@ const service = require('../../services/userServices/login.service');
 const CONSTANTS = require('../../helpers/constants'); 
 const responseObj = require('../../utils/responseObj');
 const resp = require('../../helpers/response');
+const validator = require('../../utils/validator');
 let response;
 
 /**
@@ -13,6 +14,13 @@ let response;
  * @param {*} res 
  */
 const loginController = async (req,res) => {
+    keyExistsValidationResult = validator.userKeysValidator(req.body);
+
+    if(!keyExistsValidationResult.flag) {
+        response = responseObj.httpErrorObj(keyExistsValidationResult.messages, CONSTANTS.STATUS_CODES.BAD_REQUEST);
+        return resp.sendResponse(res,response);
+    }
+
     try {
         //Reading users.json file
         fileAccessResponse = fileAccess.readFromFile(usersFilePath);

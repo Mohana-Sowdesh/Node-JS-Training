@@ -17,7 +17,7 @@ const register = (username, password) => {
     }
     catch(err) {
         errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return APP_CONSTANTS.ERROR;
+        return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;
     }
 
     //Appending new user to 'content' array
@@ -29,8 +29,9 @@ const register = (username, password) => {
     }
     catch(err) {
         errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-        return APP_CONSTANTS.ERROR;
+        return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;
     }
+    return APP_CONSTANTS.SUCCESS_CODE;
 }
 
 module.exports = {register};

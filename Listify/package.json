@@ -4,7 +4,18 @@
   "description": "Listify",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage",
+    "coverage": "nyc --include='/controllers//.controller.js' --include='/services//.service.js' --exclude='/helpers/' --exclude='/utils/' --exclude='/middleware/' --reporter=lcov --reporter=text-lcov npm test"
+  },
+  "jest": {
+    "testMatch": [
+      "**/*.test.js"
+    ],
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
   },
   "author": "Mohana Sowdesh",
   "license": "ISC",
@@ -17,6 +28,9 @@
     "winston": "^3.8.2"
   },
   "devDependencies": {
-    "jest": "^29.5.0"
+    "axios": "^1.6.5",
+    "jest": "^29.7.0",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3"
   }
 }

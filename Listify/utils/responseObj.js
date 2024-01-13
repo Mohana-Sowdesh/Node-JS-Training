@@ -1,3 +1,4 @@
+
 /**
  * Method to create a HTTP Success response object
  * @param {*} data 
@@ -21,7 +22,7 @@ const httpErrorObj = (err, code) => {
     return {
         status: "ERROR",
         code: code,
-        data: err
+        errMsg: err
     }
 }
 

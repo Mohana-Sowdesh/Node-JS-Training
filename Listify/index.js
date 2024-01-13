@@ -9,12 +9,7 @@ let cors = require('cors');
 app.use(express.json())
 
 //CORS policy
-app.use(cors(
-    {
-        origin: ['https://www.w3schools.com'],
-        methods: ['get','post', 'put', 'delete'] 
-    }
-));
+app.use(cors());
 
 //Importing router files
 const userRouter = require('./routers/user.route');
