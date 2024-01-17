@@ -63,10 +63,10 @@ const registerController = async (req, res) => {
     if(registrationResult == APP_CONSTANTS.SUCCESS_CODE) {
         response = responseObj.httpSuccessObj(CONSTANTS.REGISTER.REGISTRATION_SUCCESS);
         //Create a new key in tasks file for the created user
-        const tasksFileDataStr = await fileAccess.readFromFile(__dirname + "/../../data/tasks.json");
+        const tasksFileDataStr = fileAccess.readFromFile(__dirname + "/../../data/tasks.json");
         const tasksFileData = JSON.parse(tasksFileDataStr);
         tasksFileData[req.body.username] = [];
-        await fileAccess.writeToFile((__dirname + "/../../data/tasks.json"), tasksFileData);
+        fileAccess.writeToFile((__dirname + "/../../data/tasks.json"), tasksFileData);
     }
     else {
         response = responseObj.httpErrorObj(CONSTANTS.REGISTER.REGISTRATION_FAILURE, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);

@@ -1,10 +1,10 @@
 const axios = require('axios');
 const REGISTRATION_URL = 'http://localhost:4000/users/register';
 const fileAccess = require('../helpers/fileAccess');
-const CONSTANTS = require('../helpers/constants');
 const sinon = require('sinon');
-const supertest = require('supertest');
-const app = require('../index');
+const CONSTANTS = require('../helpers/constants');
+const TEST_USER_FILE_PATH = '/Users/mohanasowdesh/Desktop/Node JS Training/Exercise 7/data/users-test.json';
+const FILE_WRITE_CONTENT = '';
 const mockUsersFileData = [
     {
       "username": "Test1",
@@ -77,85 +77,89 @@ const TEST_RESPONSES = {
 };
 
 describe("User registration testing", () => {
-    test('Should return an error message on missing username key in request', async() => {
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.usernameKeyMissing
-      }).catch((err) => { 
-        expect(err.response.data).toEqual(TEST_RESPONSES.MISSING_USERNAME_KEY);
-      })
+    let fileAccessReadStub, fileAccessWriteStub;
+  
+    beforeEach(() => {
+      // Create a Sinon stub for fileAccess.readFromFile
+      fileAccessReadStub = sinon.stub(fileAccess, 'readFromFile');
+      fileAccessWriteStub = sinon.stub(fileAccess, 'writeToFile');
     });
+  afterEach(() => {
+    sinon.restore();
+  });
 
-    test('Should return an error message on missing password key in request', async() => {
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.passwordKeyMissing
-      }).catch((err) => { 
-        expect(err.response.data).toEqual(TEST_RESPONSES.MISSING_PASSWORD_KEY);
-      })
+  test('Should return an error message on missing username key in request', async() => {
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.usernameKeyMissing
+    }).catch((err) => { 
+      expect(err.response.data).toEqual(TEST_RESPONSES.MISSING_USERNAME_KEY);
+    })
+  });
+
+  test('Should return an error message on missing password key in request', async() => {
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.passwordKeyMissing
+    }).catch((err) => { 
+      expect(err.response.data).toEqual(TEST_RESPONSES.MISSING_PASSWORD_KEY);
+    })
+  });
+
+  test('Should return an error message on entering an invalid username', async() => {
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.invalidUsername
+    }).catch((err) => { 
+      expect(err.response.data).toEqual(TEST_RESPONSES.INVALID_USERNAME);
+    })
+  });
+
+  test('Should return an error message on entering an invalid password', async() => {
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.invalidPassword
+    }).catch((err) => { 
+      expect(err.response.data).toEqual(TEST_RESPONSES.INVALID_PASSWORD);
+    })
+  });
+
+  test('Should return an error message on entering an existing username', async() => {
+    fileAccessReadStub.readFromFile.returns(mockUsersFileData);
+
+    // Act
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.existingUser
+    }).catch((err) => { 
+      // Assert
+      expect(err.response.data).toEqual(TEST_RESPONSES.USER_ALREADY_EXISTS);
     });
+  });
 
-    test('Should return an error message on entering an invalid username', async() => {
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.invalidUsername
-      }).catch((err) => { 
-        expect(err.response.data).toEqual(TEST_RESPONSES.INVALID_USERNAME);
-      })
+  test('Should return a success message on entering valid user details', async() => {
+    // Arrange
+    fileAccessReadStub.readFromFile.returns(mockUsersFileData);
+
+    // Act
+    await axios({
+      method: "post",
+      url: REGISTRATION_URL,
+      headers: {},
+      data: testData.validUserCreds
+    }).then((res) => { 
+      // Assert
+      expect(res.data).toEqual(TEST_RESPONSES.USER_REGISTRATION_SUCCESS);
     });
-
-    test('Should return an error message on entering an invalid password', async() => {
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.invalidPassword
-      }).catch((err) => { 
-        expect(err.response.data).toEqual(TEST_RESPONSES.INVALID_PASSWORD);
-      })
-    });
-
-    test('Should return an error message on entering an existing username', async() => {
-      // Arrange
-      let fileAccessStub = sinon.stub(fileAccess);
-      fileAccessStub.readFromFile.returns(mockUsersFileData);
-
-      // Act
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.existingUser
-      }).catch((err) => { 
-        // Assert
-        console.log(err.response.data);
-        expect(err.response.data).toEqual(TEST_RESPONSES.USER_ALREADY_EXISTS);
-      });
-      sinon.restore();
-    });
-
-    test('Should return a success message on entering valid user details', async() => {
-      // Arrange
-      let fileAccessStub = sinon.stub(fileAccess);
-      fileAccessStub.readFromFile.returns(mockUsersFileData);
-      fileAccessStub.writeToFile.returns(true);
-      
-      // Act
-      await axios({
-        method: "post",
-        url: REGISTRATION_URL,
-        headers: {},
-        data: testData.validUserCreds
-      }).then((res) => { 
-        // Assert
-        expect(res.data).toEqual(TEST_RESPONSES.USER_REGISTRATION_SUCCESS);
-      });
-      sinon.restore();
-    });
+  });
 });
