@@ -1,6 +1,7 @@
 const fileAccess = require('../../helpers/fileAccess');
 const usersFilePath = 'data/users.json';
 const APP_CONSTANTS = require('../../helpers/appConstants');
+const { errLogger } = require('../../utils/logger');
 var fileAccessResponse = "";
 var content; 
 
@@ -16,7 +17,7 @@ const register = (username, password) => {
         content = JSON.parse(fileAccessResponse);
     }
     catch(err) {
-        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        errLogger.error(`${err.status || 500} - ${err.message}`);
         return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;
     }
 
@@ -28,7 +29,7 @@ const register = (username, password) => {
         fileAccess.writeToFile(usersFilePath, content);
     }
     catch(err) {
-        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        errLogger.error(`${err.status || 500} - ${err.message}`);
         return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;
     }
     return APP_CONSTANTS.SUCCESS_CODE;

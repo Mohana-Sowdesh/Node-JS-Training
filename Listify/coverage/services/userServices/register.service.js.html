@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.29% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/17</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">35.29% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/17</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,10 +99,12 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -111,33 +113,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">const fileAccess = require('../../helpers/fileAccess');
 const usersFilePath = 'data/users.json';
 const APP_CONSTANTS = require('../../helpers/appConstants');
+const { errLogger } = require('../../utils/logger');
 var fileAccessResponse = "";
 var content; 
 &nbsp;
@@ -146,29 +149,29 @@ var content;
  * @param {*} username 
  * @param {*} password 
  */
-const register = <span class="fstat-no" title="function not covered" >(u</span>sername, password) =&gt; {
-<span class="cstat-no" title="statement not covered" >    try {</span>
+const register = (username, password) =&gt; {
+    try {
         //Reading users.json file
-<span class="cstat-no" title="statement not covered" >        fileAccessResponse = fileAccess.readFromFile(usersFilePath);</span>
-<span class="cstat-no" title="statement not covered" >        content = JSON.parse(fileAccessResponse);</span>
+        fileAccessResponse = fileAccess.readFromFile(usersFilePath);
+        content = JSON.parse(fileAccessResponse);
     }
     catch(err) {
-<span class="cstat-no" title="statement not covered" >        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);</span>
+<span class="cstat-no" title="statement not covered" >        errLogger.error(`${err.status || 500} - ${err.message}`);</span>
 <span class="cstat-no" title="statement not covered" >        return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;</span>
     }
 &nbsp;
     //Appending new user to 'content' array
-<span class="cstat-no" title="statement not covered" >    content.push({username, password});</span>
+    content.push({username, password});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    try {</span>
+    try {
         //Writing to users.json file
-<span class="cstat-no" title="statement not covered" >        fileAccess.writeToFile(usersFilePath, content);</span>
+        fileAccess.writeToFile(usersFilePath, content);
     }
     catch(err) {
-<span class="cstat-no" title="statement not covered" >        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);</span>
+<span class="cstat-no" title="statement not covered" >        errLogger.error(`${err.status || 500} - ${err.message}`);</span>
 <span class="cstat-no" title="statement not covered" >        return APP_CONSTANTS.FILE_READ_WRITE_ERROR_CODE;</span>
     }
-<span class="cstat-no" title="statement not covered" >    return APP_CONSTANTS.SUCCESS_CODE;</span>
+    return APP_CONSTANTS.SUCCESS_CODE;
 }
 &nbsp;
 module.exports = {register};</pre></td></tr></table></pre>
@@ -178,7 +181,7 @@ module.exports = {register};</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-01-12T15:29:02.158Z
+                at 2024-01-17T11:22:59.721Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

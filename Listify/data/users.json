@@ -14,5 +14,9 @@
   {
     "username": "Shankar",
     "password": "$2b$14$ZbNd8ufAWnz1qYrvsgSyB.22fX5o/qRJxu1qRAoJp2WBZmfqc.j16"
+  },
+  {
+    "username": "Test3",
+    "password": "$2b$14$oWv24ft4PbYwx6pKS8Oe1eNFs4xwmxNGr6nzi0tkd6davXj9o2y9e"
   }
 ]

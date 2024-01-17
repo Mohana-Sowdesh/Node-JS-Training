@@ -76,7 +76,7 @@ const paginateResults = (queryParams, taskList) => {
     let paginatedData = taskList.slice(startIndex, endIndex);
     let result = {
                     totalRecords: totalRecords,
-                    curPage: curPage,
+                    curPage: curPage + 1 ,
                     pageLimit: pageLimit,
                     totalPages: totalPages,
                     result: paginatedData

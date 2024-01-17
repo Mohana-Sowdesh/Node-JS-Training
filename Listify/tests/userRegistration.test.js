@@ -3,8 +3,8 @@ const REGISTRATION_URL = 'http://localhost:4000/users/register';
 const fileAccess = require('../helpers/fileAccess');
 const sinon = require('sinon');
 const CONSTANTS = require('../helpers/constants');
-const TEST_USER_FILE_PATH = '/Users/mohanasowdesh/Desktop/Node JS Training/Exercise 7/data/users-test.json';
-const FILE_WRITE_CONTENT = '';
+const registerService = require('../services/userServices/register.service');
+const APP_CONSTANTS = require('../helpers/appConstants');
 const mockUsersFileData = [
     {
       "username": "Test1",
@@ -18,7 +18,7 @@ const mockUsersFileData = [
       "username": "Test3",
       "password": "test1234"
     }
-  ];
+  ]
 const testData = {
     usernameKeyMissing: {
                           "password": "test1234"
@@ -77,17 +77,6 @@ const TEST_RESPONSES = {
 };
 
 describe("User registration testing", () => {
-    let fileAccessReadStub, fileAccessWriteStub;
-  
-    beforeEach(() => {
-      // Create a Sinon stub for fileAccess.readFromFile
-      fileAccessReadStub = sinon.stub(fileAccess, 'readFromFile');
-      fileAccessWriteStub = sinon.stub(fileAccess, 'writeToFile');
-    });
-  afterEach(() => {
-    sinon.restore();
-  });
-
   test('Should return an error message on missing username key in request', async() => {
     await axios({
       method: "post",
@@ -133,33 +122,28 @@ describe("User registration testing", () => {
   });
 
   test('Should return an error message on entering an existing username', async() => {
-    fileAccessReadStub.readFromFile.returns(mockUsersFileData);
-
-    // Act
     await axios({
       method: "post",
       url: REGISTRATION_URL,
       headers: {},
       data: testData.existingUser
     }).catch((err) => { 
-      // Assert
       expect(err.response.data).toEqual(TEST_RESPONSES.USER_ALREADY_EXISTS);
     });
   });
 
   test('Should return a success message on entering valid user details', async() => {
     // Arrange
-    fileAccessReadStub.readFromFile.returns(mockUsersFileData);
+    let fileAccessStub = sinon.stub(fileAccess);
+    fileAccessStub.readFromFile.returns(JSON.stringify(mockUsersFileData));
+    fileAccessStub.writeToFile.returns();
 
     // Act
-    await axios({
-      method: "post",
-      url: REGISTRATION_URL,
-      headers: {},
-      data: testData.validUserCreds
-    }).then((res) => { 
-      // Assert
-      expect(res.data).toEqual(TEST_RESPONSES.USER_REGISTRATION_SUCCESS);
-    });
+    let res = registerService.register('Test6', 'Test1234');
+
+    // Assert
+    expect(res).toEqual(APP_CONSTANTS.SUCCESS_CODE);
+
+    sinon.restore();
   });
 });

@@ -8,6 +8,8 @@ const userHelper = require('../../helpers/userHelper');
 const fileAccess = require('../../helpers/fileAccess');
 const bcrypt = require("bcrypt");
 const APP_CONSTANTS = require('../../helpers/appConstants');
+const TASKS_FILE_PATH = "/../../data/tasks.json";
+const USERS_FILE_PATH = "/../../data/users.json";
 let response;
 
 /**
@@ -37,10 +39,9 @@ const registerController = async (req, res) => {
     }
 
     // Check if user already exits or not
-    const usersFileData = fileAccess.readFromFile(__dirname + "/../../data/users.json");
+    const usersFileData = fileAccess.readFromFile(__dirname + USERS_FILE_PATH);
     const userCheckResult = userHelper.userExists(usersFileData, req.body.username);
-    
-    console.log(userCheckResult);
+
     if(userCheckResult != -1)
     {
         response = responseObj.httpErrorObj(CONSTANTS.REGISTER.USER_ALREADY_EXISTS, CONSTANTS.STATUS_CODES.BAD_REQUEST);
@@ -63,10 +64,10 @@ const registerController = async (req, res) => {
     if(registrationResult == APP_CONSTANTS.SUCCESS_CODE) {
         response = responseObj.httpSuccessObj(CONSTANTS.REGISTER.REGISTRATION_SUCCESS);
         //Create a new key in tasks file for the created user
-        const tasksFileDataStr = fileAccess.readFromFile(__dirname + "/../../data/tasks.json");
+        const tasksFileDataStr = fileAccess.readFromFile(__dirname + TASKS_FILE_PATH);
         const tasksFileData = JSON.parse(tasksFileDataStr);
         tasksFileData[req.body.username] = [];
-        fileAccess.writeToFile((__dirname + "/../../data/tasks.json"), tasksFileData);
+        fileAccess.writeToFile((__dirname + TASKS_FILE_PATH), tasksFileData);
     }
     else {
         response = responseObj.httpErrorObj(CONSTANTS.REGISTER.REGISTRATION_FAILURE, CONSTANTS.STATUS_CODES.INTERNAL_SERVER_ERROR);
