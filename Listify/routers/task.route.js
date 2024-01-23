@@ -1,22 +1,12 @@
-let express = require('express');
-let router = express.Router();
-
-//Importing controllers
-const createTaskController = require('../controllers/taskController/createTask.controller');
-const deleteTaskController = require('../controllers/taskController/deleteTask.controller');
-const filterTaskController = require('../controllers/taskController/filterTask.controller');
-const readTaskByIDController = require('../controllers/taskController/readTaskByID.controller');
-const readTasksController = require('../controllers/taskController/readTasks.controller');
-const sortTaskController = require('../controllers/taskController/sortTask.controller');
-const updateTaskController = require('../controllers/taskController/updateTask.controller');
+const express = require('express');
+const router = express.Router();
+const taskController = require('../controllers/task.controller');
 
 //Routing tasks
-router.post("/create", createTaskController.createTaskController);
-router.delete("/:id", deleteTaskController.deleteTaskController);
-router.get("/filter", filterTaskController.filterTaskController);
-router.get("/tasks-list", readTasksController.readTasksController);
-router.get("/sort", sortTaskController.sortTaskController);
-router.get("/:id", readTaskByIDController.readTaskByIDController);
-router.put("/:id", updateTaskController.updateTaskController);
+router.post("/", taskController.createTaskController);
+router.delete("/:id", taskController.deleteTaskController);
+router.get("/", taskController.readTasksController);
+router.get("/:id", taskController.readTaskByIDController);
+router.put("/:id", taskController.updateTaskController);
 
 module.exports = router;

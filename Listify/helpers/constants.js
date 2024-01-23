@@ -37,7 +37,7 @@ const READ_ALL_TASKS = {
 }
 
 const READ_TASK_BY_ID = {
-    TASK_ID_INVALID: "Task ID should be number",
+    TASK_ID_INVALID: "Task ID is not valid",
     TASK_NOT_FOUND: "Task not found"
 }
 

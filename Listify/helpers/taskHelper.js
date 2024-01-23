@@ -1,43 +1,38 @@
 const {errLogger} = require('../utils/logger');
 const fileAccess = require('../helpers/fileAccess');
-let tasksFilePath = '/../data/tasks.json';
+const APP_CONSTANTS = require('../helpers/appConstants');
 
 /**
  * Method to read all tasks of a user
  * @param {*} req 
  * @returns 
  */
-const getUserTaskList = (req) => {
+const getUserTaskList = (username) => {
     let userTasks =  null;
     try {
         //Reading tasks.json file
-        fileAccessResponse = fileAccess.readFromFile(__dirname + tasksFilePath);
+        fileAccessResponse = fileAccess.readFromFile(__dirname + APP_CONSTANTS.TASKS_FILE_PATH);
         allTasks = JSON.parse(fileAccessResponse);
-        userTasks = allTasks[req.username];
+        userTasks = allTasks.filter(task => task.createdBy == username);
     }
     catch(err) {
-        errLogger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        throw err;
     }
     return userTasks;
 }
 
 /**
- * Method to check if the taskId is already present
- * @param {*} req 
- * @param {*} incomingTaskId 
- * @returns 
+ * Function to add current timestamp to each comment
+ * @param {*} taskData 
+ * @returns taskData
  */
-const taskExists = (req, incomingTaskId) => {
-    userTasks = getUserTaskList(req);
-
-    if(userTasks == null)
-        return -2;
-
-    for(let i=0; i < userTasks.length; i++) {
-        if(userTasks[i].taskId === incomingTaskId)
-            return 1;
-    }
-    return -1;
+const addTimestampsToComments = (taskData) => {
+    taskData.comments.forEach(comment => {
+        if(!comment.hasOwnProperty("timestamp")) {
+            comment.timestamp = new Date().toISOString(); 
+        }
+    });
+    return taskData;
 }
 
 /**
@@ -46,14 +41,19 @@ const taskExists = (req, incomingTaskId) => {
  * @param {*} incomingTaskId 
  * @returns 
  */
-const findTaskIndex = (req, incomingTaskId) => {
-    userTasks = getUserTaskList(req);
-
-    if(userTasks == null)
-        return -2;
+const findTaskIndex = (incomingTaskId) => {
+    let allTasks =  null;
+    try {
+        //Reading tasks.json file
+        fileAccessResponse = fileAccess.readFromFile(__dirname + APP_CONSTANTS.TASKS_FILE_PATH);
+        allTasks = JSON.parse(fileAccessResponse);
+    }
+    catch(err) {
+        throw err;
+    }
 
     for(let i=0; i < userTasks.length; i++) {
-        if(userTasks[i].taskId === incomingTaskId)
+        if(allTasks[i].taskId === incomingTaskId)
             return i;
     }
     return -1;
@@ -85,4 +85,39 @@ const paginateResults = (queryParams, taskList) => {
     return result;
 }
 
-module.exports = { taskExists, findTaskIndex, getUserTaskList, paginateResults };
+/**
+ * Method to delete a key from result JSON
+ * @param {*} taskDetails 
+ * @param {*} prop 
+ * @returns 
+ */
+const deleteKeyFromJSON = (taskDetails, prop) => {
+    taskDetails.forEach((task) => {
+        delete task[prop];
+    });
+    return taskDetails;
+}
+
+/**
+ * Method to find the index of a task
+ * @param {*} req 
+ * @param {*} incomingTaskId 
+ * @returns 
+ */
+const taskExists = (username, incomingTaskId) => {
+    try {
+        userTasks = getUserTaskList(username);
+    }
+    catch(err) {
+        throw err;
+    }
+
+    for(let i=0; i < userTasks.length; i++) {
+        if(userTasks[i].taskId === incomingTaskId)
+            return i;
+    }
+    return -1;
+}
+
+module.exports = { findTaskIndex, getUserTaskList, paginateResults, 
+    addTimestampsToComments, deleteKeyFromJSON, taskExists };

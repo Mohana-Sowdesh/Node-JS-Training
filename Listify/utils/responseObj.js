@@ -6,7 +6,6 @@
  */
 const httpSuccessObj = (data) => {
     return {
-        status: "SUCCESS",
         code: 200,
         data: data
     }
@@ -20,10 +19,22 @@ const httpSuccessObj = (data) => {
  */
 const httpErrorObj = (err, code) => {
     return {
-        status: "ERROR",
         code: code,
         errMsg: err
     }
 }
 
-module.exports = { httpSuccessObj, httpErrorObj }
+/**
+ * Method to create a HTTP Success msg response object
+ * @param {*} req 
+ * @param {*} err 
+ * @returns 
+ */
+const httSuccessMsgObj = (msg) => {
+    return {
+        code: 200,
+        msg: msg
+    }
+}
+
+module.exports = { httpSuccessObj, httpErrorObj, httSuccessMsgObj }

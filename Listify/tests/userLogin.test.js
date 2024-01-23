@@ -2,7 +2,7 @@ const axios = require('axios');
 const LOGIN_URL = 'http://localhost:4000/users/login';
 const CONSTANTS = require('../helpers/constants');
 const sinon = require('sinon');
-const loginService = require('../services/userServices/login.service');
+const loginService = require('../services/user.service');
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNvd2Rlc2giLCJpYXQiOjE3MDU0NzIwOTB9.otA9sChr93Gw7OYfw-CjHGUk026YqzRWP755mPXCNPo';
 const testData = {
     usernameKeyMissing: {
@@ -36,17 +36,14 @@ const mockUsersFileData = [
 ]
 const TEST_RESPONSES = {
     MISSING_USERNAME_KEY: {
-                            status: "ERROR",
                             code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                             errMsg: ["The key username is missing"]
                           },
     MISSING_PASSWORD_KEY: {
-                            status: "ERROR",
                             code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                             errMsg: ["The key password is missing"]
                           },                      
     INVALID_CREDS: {
-                        status: "ERROR",
                         code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                         errMsg: CONSTANTS.LOGIN.LOGIN_ERROR
                    }                              

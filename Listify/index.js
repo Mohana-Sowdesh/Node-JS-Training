@@ -1,10 +1,11 @@
 //Importing express package
-let express = require('express');
-let app = express();
-let verify = require('./middleware/auth');
+const express = require('express');
+const app = express();
+const verify = require('./middleware/auth');
+const fs = require('fs');
 
 //Importing cors package
-let cors = require('cors');
+const cors = require('cors');
 
 app.use(express.json())
 
@@ -14,7 +15,6 @@ app.use(cors());
 //Importing router files
 const userRouter = require('./routers/user.route');
 const taskRouter = require('./routers/task.route');
-const { log } = require('./utils/logger');
 
 //Routing the requests
 app.use('/users', userRouter);

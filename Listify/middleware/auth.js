@@ -4,6 +4,7 @@ const responseObj = require('../utils/responseObj');
 const CONSTANTS = require('../helpers/constants');
 const resp = require('../helpers/response');
 const { errLogger } = require('../utils/logger');
+const APP_CONSTANTS = require('../helpers/appConstants');
 
 const verifyToken = (req, res, next) => {
     let token;
@@ -28,7 +29,7 @@ const verifyToken = (req, res, next) => {
  * @returns 
  */
 const createToken = (payload) => {
-    const token = jwt.sign({ "username": payload },process.env.JWT_SECRET_KEY, { expiresIn: "30m"});
+    const token = jwt.sign({ "username": payload },process.env.JWT_SECRET_KEY, { expiresIn: APP_CONSTANTS.TOKEN_EXPIRATION });
     return token;
 }
 

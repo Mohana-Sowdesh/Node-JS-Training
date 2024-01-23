@@ -3,7 +3,7 @@ const REGISTRATION_URL = 'http://localhost:4000/users/register';
 const fileAccess = require('../helpers/fileAccess');
 const sinon = require('sinon');
 const CONSTANTS = require('../helpers/constants');
-const registerService = require('../services/userServices/register.service');
+const registerService = require('../services/user.service');
 const APP_CONSTANTS = require('../helpers/appConstants');
 const mockUsersFileData = [
     {
@@ -45,32 +45,26 @@ const testData = {
 };
 const TEST_RESPONSES = {
   MISSING_USERNAME_KEY: {
-                          status: "ERROR",
                           code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                           errMsg: ["The key username is missing"]
                         },
   MISSING_PASSWORD_KEY: {
-                          status: "ERROR",
                           code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                           errMsg: ["The key password is missing"]
                         },                      
   INVALID_USERNAME: {
-                        status: "ERROR",
                         code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                         errMsg: CONSTANTS.REGISTER.USERNAME_INVALID
                     },
   INVALID_PASSWORD: {
-                        status: "ERROR",
                         code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                         errMsg: CONSTANTS.REGISTER.PASSWORD_INVALID
                     },
   USER_ALREADY_EXISTS: {
-                        status: "ERROR",
                         code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                         errMsg: CONSTANTS.REGISTER.USER_ALREADY_EXISTS
                       },
   USER_REGISTRATION_SUCCESS: {
-                                status: "SUCCESS",
                                 code: 200,
                                 data: CONSTANTS.REGISTER.REGISTRATION_SUCCESS
                             }                                    

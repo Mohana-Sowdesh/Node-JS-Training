@@ -2,9 +2,9 @@ const axios = require('axios');
 const READ_TASK_BY_ID_URL = 'http://localhost:4000/tasks/';
 const CONSTANTS = require('../helpers/constants');
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNvd2Rlc2giLCJpYXQiOjE3MDU0NzIwOTB9.otA9sChr93Gw7OYfw-CjHGUk026YqzRWP755mPXCNPo';
-const testTaskId = ['5', 'test', '578', '70', '1'];
+const testTaskId = ['5', 'test', '9d4cf23b-19b3-469c-ab52-df666e452c3f', '70', '1'];
 const sinon = require('sinon');
-const readTaskByIdService = require('../services/taskServices/readTaskByID.service');
+const readTaskByIdService = require('../services/task.service');
 const successResult = { exists: 5, data: {
     "taskId": "5",
     "title": "Attend cousin's marriage",
@@ -20,17 +20,14 @@ const successResult = { exists: 5, data: {
 }}
 const TEST_RESPONSES = {
     UNAUTHORIZED_USER: {
-                            status: "ERROR",
                             code: CONSTANTS.STATUS_CODES.UNAUTHORIZED,
                             errMsg: CONSTANTS.USER_UNAUTHORIZED
                         },
     TASK_ID_VALIDATION_ERROR: {
-                                status: "ERROR",
                                 code: CONSTANTS.STATUS_CODES.BAD_REQUEST,
                                 errMsg: CONSTANTS.READ_TASK_BY_ID.TASK_ID_INVALID
                               },
     TASK_NOT_FOUND: {
-                      status: "ERROR",
                       code: 404,
                       errMsg: CONSTANTS.READ_TASK_BY_ID.TASK_NOT_FOUND
                     }                                      
@@ -47,7 +44,7 @@ describe("Read task by ID testing", () => {
         });
       });
 
-      test('Should return an error message if taskId to be read is not a number', async() => {
+      test('Should return an error message if taskId to be read is not valid', async() => {
         await axios({
           method: "get",
           url: READ_TASK_BY_ID_URL+testTaskId[1],
